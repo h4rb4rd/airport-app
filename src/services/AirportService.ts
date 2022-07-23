@@ -22,7 +22,18 @@ export const airportApi = createApi({
 				},
 			}),
 		}),
+		searchAirports: build.query<IAirport[], string>({
+			query: (search: string) => ({
+				url: `/airports`,
+				params: {
+					search,
+					count: 10,
+				},
+			}),
+			transformResponse: (response: ServerResponse<IAirport>) =>
+				response.results,
+		}),
 	}),
 })
 
-export const { useFetchAirportsQuery } = airportApi
+export const { useFetchAirportsQuery, useSearchAirportsQuery } = airportApi
