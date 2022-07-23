@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom'
+
 const AirportDetailPage = () => {
-	return <>Airport detail</>
+	const { id } = useParams<{ id: string }>()
+
+	return <>Airport {id}</>
 }
 
 export default AirportDetailPage
