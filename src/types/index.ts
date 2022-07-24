@@ -5,7 +5,20 @@ export enum RouteNames {
 	NOT_FOUND = '*',
 }
 
+export type AirportTypeType = string
+export type AirportRegionType = string
+export type AirportCountryType = string
+
+export interface IFilter {
+	type: AirportTypeType
+	region: AirportRegionType
+	country: AirportCountryType
+}
+
 export type AirportsRequestQueryType = {
-	page: number
-	count: number
+	page?: number
+	count?: number
+	type?: AirportTypeType
+	region?: AirportRegionType
+	country?: AirportCountryType
 }

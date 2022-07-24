@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IAirport, ServerResponse } from '../models'
-import { AirportsRequestQueryType } from '../types'
+import {
+	AirportCountryType,
+	AirportRegionType,
+	AirportsRequestQueryType,
+	AirportTypeType,
+} from '../types'
 
 export const airportApi = createApi({
 	reducerPath: 'airport/api',
@@ -14,11 +19,14 @@ export const airportApi = createApi({
 			ServerResponse<IAirport>,
 			AirportsRequestQueryType
 		>({
-			query: ({ page, count }) => ({
+			query: ({ page, count, type, region, country }) => ({
 				url: `/airports`,
 				params: {
-					page: page,
-					count: count,
+					page,
+					count,
+					type,
+					region,
+					country,
 				},
 			}),
 		}),
@@ -33,7 +41,28 @@ export const airportApi = createApi({
 			transformResponse: (response: ServerResponse<IAirport>) =>
 				response.results,
 		}),
+		fetchAirportTypes: build.query<AirportTypeType[], string>({
+			query: () => ({
+				url: `/handbooks/airport-types`,
+			}),
+		}),
+		fetchAirportRegions: build.query<AirportRegionType[], string>({
+			query: () => ({
+				url: `/handbooks/regions`,
+			}),
+		}),
+		fetchAirportCountries: build.query<AirportCountryType[], string>({
+			query: () => ({
+				url: `/handbooks/countries`,
+			}),
+		}),
 	}),
 })
 
-export const { useFetchAirportsQuery, useSearchAirportsQuery } = airportApi
+export const {
+	useFetchAirportsQuery,
+	useSearchAirportsQuery,
+	useFetchAirportTypesQuery,
+	useFetchAirportRegionsQuery,
+	useFetchAirportCountriesQuery,
+} = airportApi
