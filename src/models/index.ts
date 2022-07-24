@@ -14,3 +14,18 @@ export interface ServerResponse<T> {
 	previous?: any
 	results: T[]
 }
+
+export interface IAirportDetails {
+	ident: string
+	local_code?: any
+	name: string
+	coordinates: string
+	elevation_ft: string
+	gps_code?: any
+	iata_code?: any
+	continent: string
+	type: string
+	country: string
+	region: string
+	municipality: string
+}

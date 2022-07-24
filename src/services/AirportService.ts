@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { IAirport, ServerResponse } from '../models'
+import { IAirport, IAirportDetails, ServerResponse } from '../models'
 import {
 	AirportCountryType,
 	AirportRegionType,
@@ -41,6 +41,11 @@ export const airportApi = createApi({
 			transformResponse: (response: ServerResponse<IAirport>) =>
 				response.results,
 		}),
+		fetchAirport: build.query<IAirportDetails, string>({
+			query: (id: string) => ({
+				url: `/airports/${id}`,
+			}),
+		}),
 		fetchAirportTypes: build.query<AirportTypeType[], string>({
 			query: () => ({
 				url: `/handbooks/airport-types`,
@@ -62,6 +67,7 @@ export const airportApi = createApi({
 export const {
 	useFetchAirportsQuery,
 	useSearchAirportsQuery,
+	useFetchAirportQuery,
 	useFetchAirportTypesQuery,
 	useFetchAirportRegionsQuery,
 	useFetchAirportCountriesQuery,
