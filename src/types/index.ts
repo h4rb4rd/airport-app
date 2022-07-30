@@ -22,3 +22,8 @@ export type AirportsRequestQueryType = {
 	region?: AirportRegionType
 	country?: AirportCountryType
 }
+
+export type FormDataType = {
+	username: string
+	password: string
+}

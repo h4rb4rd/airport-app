@@ -29,3 +29,8 @@ export interface IAirportDetails {
 	region: string
 	municipality: string
 }
+
+export interface IAuthResponse {
+	refresh: string
+	access: string
+}

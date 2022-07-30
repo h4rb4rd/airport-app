@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { airportApi } from '../services/AirportService'
+import { authReducer } from './slices/authSlice'
 import { filtersReducer } from './slices/filtersSlice'
 
 const rootReducer = combineReducers({
 	[airportApi.reducerPath]: airportApi.reducer,
 	filters: filtersReducer,
+	auth: authReducer,
 })
 
 export const setupStore = () => {
